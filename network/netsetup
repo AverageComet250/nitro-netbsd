@@ -1,0 +1,7 @@
+/bin/hostname nbsd
+/sbin/ifconfig iwm0 up
+/sbin/ifconfig iwm0 media autoselect
+/usr/sbin/wpa_supplicant -B -i iwm1 -D bsd -c /etc/wpa_supplicant.conf
+/sbin/ifconfig iwm0 192.168.4.178 netmask 255.255.252.0
+/sbin/route add default 192.168.4.1
+echo "nameserver 8.8.8.8" > /etc/resolv.conf

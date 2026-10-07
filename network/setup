@@ -1,16 +1,30 @@
 #!/bin/sh
 # 1. set a hostname
-# 2. set a domainname
-# 3. start loopback
+# - set a domainname
+# 2. start loopback
 # - start ipv6 here
-# 4. autosetup all interfaces (this'll be stolen from rc.d/network)
+# 3. autosetup all interfaces (this'll be stolen from rc.d/network)
 #   - for now just hardcode this for iwm0 using my current /etc/ifconfig.iwm0
 # - if aliases setup here
 # - defaultroute (/etc/mygate) is skipped and populated w/ dhcpcd instead
-# 5. run resolvconf and setup dns
+# 4. run resolvconf and setup dns
 #   - might just force this to google for now
 # - `/etc/netstart.local start` - doesn't exist on my system so will come back
 #   to this
 #
 # networking also needs a stop job, but that's a task for later
 echo "setting up networking"
+hostname chalice # taking suggestions for a better hostname (yoga 720)
+ifconfig iwm0 up
+ifconfig iwm0 media autoselect
+
+# connect to wifi
+wpa_supplicant -B -i iwm0 -D bsd -c /etc/wpa_supplicant.conf
+
+# above says dhcpcd and resolvconf, but for testing I'm going to force a static
+# route and dns server
+# obviously these details are only for my home network
+
+ifconfig iwm0 192.168.4.178 netmask 255.255.252.0
+route add default 192.168.4.1
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
