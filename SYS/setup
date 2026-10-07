@@ -13,3 +13,18 @@
 #
 # This should be enough to prove that the system works, then I can port the rest
 # of the rc scripts until I have a full set of system services
+
+printf "Hello from NetBSD\n"
+
+# /etc/rc.d/root
+umount -a >/dev/null 2>&1
+mount /
+rm -f /fastboot
+
+# /etc/rc.d/ttys
+ttyflags -a
+if [ -c /dev/ttyp0 ]; then
+        chmod 666 /dev/tty[p-uw-zP-T][0-9a-zA-Z]
+fi
+
+# At this point the rsh service should start
