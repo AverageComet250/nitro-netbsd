@@ -13,18 +13,25 @@
 #   to this
 #
 # networking also needs a stop job, but that's a task for later
+
+hostname="chalice"
+ip="192.168.4.178"
+netmask="255.255.252.0"
+gateway="192.168.4.1"
+
 echo "setting up networking"
-hostname chalice # taking suggestions for a better hostname (yoga 720)
+hostname $hostname # taking suggestions for a better hostname (yoga 720)
 ifconfig iwm0 up
 ifconfig iwm0 media autoselect
 
 # connect to wifi
+# this should be its own job
 wpa_supplicant -B -i iwm0 -D bsd -c /etc/wpa_supplicant.conf
 
 # above says dhcpcd and resolvconf, but for testing I'm going to force a static
 # route and dns server
 # obviously these details are only for my home network
 
-ifconfig iwm0 192.168.4.178 netmask 255.255.252.0
-route add default 192.168.4.1
+ifconfig iwm0 $ip netmask $netmask
+route add default $gateway
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
