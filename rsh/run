@@ -1,3 +1,0 @@
-#!/bin/sh
-
-/bin/csh </dev/constty >/dev/constty 2>/dev/constty
