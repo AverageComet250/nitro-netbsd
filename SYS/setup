@@ -1,0 +1,15 @@
+#!/bin/sh 
+# Start Critical System Services before handing off the nitro for non-criticals
+# Criticals (using rc.d names):
+# - fsck_root (technically optional)
+# - resize_root (also technically optional)
+# - root
+# - bootconf 
+#   - currently going to ignore this, nitro doesn't have runlevels but
+#     can probably map it w/ symlinks
+# - ttys
+#
+# The plan - SYS/setup mounts root and then sets up a single tty
+#
+# This should be enough to prove that the system works, then I can port the rest
+# of the rc scripts until I have a full set of system services
