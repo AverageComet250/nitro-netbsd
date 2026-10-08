@@ -21,6 +21,9 @@ umount -a >/dev/null 2>&1
 mount /
 rm -f /fastboot
 
+# /etc/rc.d/mountall
+mount -a
+
 # /etc/rc.d/ttys
 ttyflags -a
 if [ -c /dev/ttyp0 ]; then
