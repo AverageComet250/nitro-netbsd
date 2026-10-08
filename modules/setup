@@ -1,0 +1,19 @@
+#!/bin/sh
+# load kernel modules in /etc/modules.conf
+
+if [ -f /etc/modules.conf ]; then
+	echo "Loading modules."
+	while read name args; do
+		case $name in
+		''|"#"*)
+			;;
+		*)
+			(
+				set -o noglob
+				eval set -- $args
+				modload "$@" "$name"
+			)
+			;;
+		esac
+	done < /etc/modules.conf
+fi
