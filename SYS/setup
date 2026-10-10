@@ -16,6 +16,9 @@
 
 printf "Hello from NetBSD\n"
 
+# /etc/rc.d/fsck_root
+nitroctl start fsck_root
+
 # /etc/rc.d/root
 umount -a >/dev/null 2>&1
 mount /
