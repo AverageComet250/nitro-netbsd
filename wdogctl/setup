@@ -1,0 +1,3 @@
+#!/bin/sh
+flags="-k devicename"
+/sbin/wdogctl ${flags}
