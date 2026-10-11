@@ -24,6 +24,9 @@ umount -a >/dev/null 2>&1
 mount /
 rm -f /fastboot
 
+# /etc/rc.d/sysctl
+nitroctl start sysctl
+
 # /etc/rc.d/mountall
 mount -a
 

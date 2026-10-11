@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ -r /etc/sysctl.conf ]; then
+	echo "Setting sysctl variables:"
+	sysctl -f /etc/sysctl.conf
+fi
