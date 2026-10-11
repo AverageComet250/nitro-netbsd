@@ -22,8 +22,7 @@ ifconfig iwm0 up
 ifconfig iwm0 media autoselect
 
 # connect to wifi
-# this should be its own job
-wpa_supplicant -B -i iwm0 -D bsd -c /etc/wpa_supplicant.conf
+nitroctl start wpa_supplicant@iwm0
 
 # start dhcpcd
 nitroctl start dhcpcd
