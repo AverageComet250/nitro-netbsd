@@ -42,3 +42,22 @@ Symlink `getty@` as wanted (I recommend `constty` and `ttyE{1..3}`). Currently
 - fsck_root will get stuck in a loop (`kill -TERM` is killing the task rather
   than init?)
 - A single user mode with getty@constty
+
+## Apparent `rc.d` Service Order
+
+1. ttys
+2. syslogd
+3. date via ntp
+4. mountall
+5. clear temp
+6. fontconfig
+7. clear quotas
+8. swapctl
+9. virecover
+10. savecore
+11. __local daemons__
+12. motd
+13. powerd
+14. postfix
+15. inetd
+16. cron
